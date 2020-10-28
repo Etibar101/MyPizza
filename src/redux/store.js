@@ -1,17 +1,15 @@
-import {createStore} from 'redux';
+import {combineReducers, createStore} from 'redux';
+import filtersReducer from './reducers/filters';
+import pizzasReducer from './reducers/pizzas';
 
-function counter(state = 0, action) {
-    switch (action.type) {
-        case 'INCREMENT':
-            return state + 1
-        case 'DECREMENT':
-            return state - 1
-        default:
-            return state
-    }
-}
+const rootReducers = combineReducers({
+    filters: filtersReducer,
+    pizzas: pizzasReducer,
+})
 
-const store = createStore(counter);
+const store = createStore(rootReducers,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;
 
+window.store = store;
