@@ -8,11 +8,11 @@ import { fetchPizzas } from '../redux/actions/pizzas';
 import PizzaBlock from "../components/PizzaBlock";
 import LoadingBlock from "../components/PizzaBlock/LoadingBlock";
 
-const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+const categoryNames = ['Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed'];
 const sortIems = [
-    { name: 'популярности', type: 'popular', order: 'desc' },
-    { name: 'цене', type: 'price', order: 'desc' },
-    { name: 'алфавит', type: 'name', order: 'asc' },
+    { name: 'popularity', type: 'popular', order: 'desc' },
+    { name: 'price', type: 'price', order: 'desc' },
+    { name: 'alphabet', type: 'name', order: 'asc' },
 ];
 
 function Home() {
@@ -55,14 +55,14 @@ function Home() {
                     onClickSortType={onSelectSortType}
                 />
             </div>
-            <h2 className="content__title">Все пиццы</h2>
+            <h2 className="content__title">All pizzas</h2>
             <div className="content__items">
                 {isLoaded
                     ? items.map((obj) => (
                         <PizzaBlock
                             onClickAddPizza={handleAddPizzaToCart}
                             key={obj.id}
-                            addedCount={cartItems[obj.id] && cartItems[obj.id].length}
+                            addedCount={cartItems[obj.id] && cartItems[obj.id].items.length}
                             {...obj}
                         />
                     ))
